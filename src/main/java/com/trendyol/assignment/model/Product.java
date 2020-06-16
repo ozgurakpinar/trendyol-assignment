@@ -1,6 +1,5 @@
 package com.trendyol.assignment.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;

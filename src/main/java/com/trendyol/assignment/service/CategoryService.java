@@ -1,22 +1,28 @@
 package com.trendyol.assignment.service;
 
 import com.trendyol.assignment.model.Category;
-import com.trendyol.assignment.model.Product;
+import com.trendyol.assignment.repository.CategoryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
+
+    @Autowired
+    private CategoryRepository repository;
+
     public Category saveCategory(Category category){
-        return null;
+        return repository.save(category);
     }
 
-    public Category getCategoryById(long id) {
-        return null;
+    public Optional<Category> getCategoryById(long id) {
+        return repository.findById(id);
     }
 
     public List<Category> getCategories(){
-        return null;
+        return repository.findAll();
     }
 }

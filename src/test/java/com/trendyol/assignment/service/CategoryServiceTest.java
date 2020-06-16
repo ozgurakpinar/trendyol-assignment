@@ -51,11 +51,11 @@ class CategoryServiceTest {
         when(categoryRepository.findById(categoryId)).thenReturn(Optional.of(mockCategory));
 
         // When
-        Category category = underTest.getCategoryById(categoryId);
+        Optional<Category> category = underTest.getCategoryById(categoryId);
 
         // Verify
         verify(categoryRepository, times(1)).findById(categoryId);
-        assertEquals(categoryId, category.getId());
+        assertEquals(categoryId, category.get().getId());
     }
 
     @Test

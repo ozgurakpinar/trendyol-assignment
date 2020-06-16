@@ -53,10 +53,10 @@ public class ProductServiceTest {
         when(productRepository.findById(productId)).thenReturn(Optional.of(mockProduct));
 
         // When
-        Product product = underTest.getProductById(productId);
+        Optional<Product> product = underTest.getProductById(productId);
 
         // Verify
         verify(productRepository, times(1)).findById(productId);
-        assertEquals(productId, product.getId());
+        assertEquals(productId, product.get().getId());
     }
 }
