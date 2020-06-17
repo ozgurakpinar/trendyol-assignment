@@ -1,0 +1,312 @@
+{
+	"info": {
+		"_postman_id": "4e521a01-59ae-4e9a-bb14-d505bc05f273",
+		"name": "TrendyolDolap",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "SaveCategory",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Electronics\",\r\n    \"description\": \"Electronic gadgets\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8989/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCategories",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a3d4ec00-a363-40e3-8337-1f94b1f9a4d7",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "e23910b2-cd03-437a-a8c6-49e7c2b32baf",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8989/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCategoriesPrePopulated",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "41c02135-b602-4a35-a1a4-d7de77707bb5",
+								"exec": [
+									"    var categories =  [{\r",
+									"            name : 'Clothing',\r",
+									"            description: \"Clothes\"\r",
+									"        },\r",
+									"        {\r",
+									"            name : 'Electronics',\r",
+									"            description: \"Electronic gadgets\"\r",
+									"        },\r",
+									"        {\r",
+									"            name : 'Accessories',\r",
+									"            description: \"Accessories\"\r",
+									"        }\r",
+									"        ];\r",
+									"\r",
+									"for (category of categories) {\r",
+									"    pm.sendRequest({\r",
+									"        url: pm.collectionVariables.get('BaseUrl') + '/categories',\r",
+									"        method: 'POST',\r",
+									"        header: {\r",
+									"                'Authorization': 'Basic YWRtaW46MTIzNDU2',\r",
+									"                'Content-Type' : 'application/json'\r",
+									"        },\r",
+									"        body: {\r",
+									"            mode: 'json',\r",
+									"            raw: JSON.stringify(category)\r",
+									"        }\r",
+									"    }, function (err, res) {\r",
+									"        console.log(res);\r",
+									"    });\r",
+									"}\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "6eb72e26-4007-4051-ac8d-4019599c371e",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8989/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCategoryById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8989/categories/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "SaveProduct",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"product\": {\r\n    \"name\": \"Blender\",\r\n    \"description\": \"Kitchen Blender\",\r\n    \"price\": \"0.5\"\r\n    },\r\n    \"categoryId\" : 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8989/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductsByCategory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8989/products/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"products",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateProduct",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 1,\r\n    \"name\": \"Blender 2\",\r\n    \"description\": \"Kitchen blender 2\",\r\n    \"price\": \"0.5\",\r\n    \"category\": {\r\n        \"id\" : 2\r\n    }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8989/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "123456",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "dd4135de-dda5-4539-888b-91dfcba8c820",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "eb2f4444-7e57-4f81-8371-94d57da2aba0",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "1c64098e-f491-4c88-aa1b-7d26f11f45b2",
+			"key": "BaseUrl",
+			"value": "localhost:8989",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
