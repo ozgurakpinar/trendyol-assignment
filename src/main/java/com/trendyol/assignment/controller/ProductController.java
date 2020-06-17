@@ -34,13 +34,20 @@ public class ProductController {
         return productService.createProduct(request);
     }
 
-    @GetMapping(value = "/products/{categoryId}")
+    @GetMapping(value = "/products/categories/{categoryId}")
     public Set<Product> getProductsByCategory(@PathVariable("categoryId") long id) {
 
         Category category = categoryService.getCategoryById(id)
                 .orElseThrow(() -> new NotFoundException("Category with id " + id + " does not exist!"));
 
         return category.getProducts();
+    }
+
+    @GetMapping(value = "/products/{id}")
+    public Product getProductById(@PathVariable("id") long id) {
+
+        return productService.getProductById(id)
+                .orElseThrow(() -> new NotFoundException("Product with id: " + id + " does not exist!"));
     }
 
     @PutMapping(value = "/products")

@@ -14,11 +14,11 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
-    @JsonIgnoreProperties(value = {"name", "description"})
+    @JsonIgnoreProperties(value = {"name", "description", "hibernateLazyInitializer"})
     private Category category;
 
     private String name;

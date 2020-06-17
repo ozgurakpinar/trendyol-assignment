@@ -25,4 +25,8 @@ public class CategoryService {
     public List<Category> getCategories(){
         return repository.findAll();
     }
+
+    public void deleteCategory(Category category) {
+        repository.delete(category);
+    }
 }

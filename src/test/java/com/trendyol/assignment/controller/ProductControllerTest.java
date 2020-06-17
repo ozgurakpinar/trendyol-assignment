@@ -19,6 +19,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import static com.trendyol.assignment.utils.TestUtils.ANY_CATEGORY_ID;
+import static com.trendyol.assignment.utils.TestUtils.ANY_PRODUCT_ID;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -94,6 +95,35 @@ class ProductControllerTest {
         // When and Verify
         Assertions.assertThrows(NotFoundException.class, () -> {
             underTest.getProductsByCategory(ANY_CATEGORY_ID);
+        });
+    }
+
+    @Test
+    public void testGetProductById() {
+
+        // Given
+        Category mockCategory = mock(Category.class);
+        Product mockProduct = mock(Product.class);
+
+        when(productService.getProductById(ANY_PRODUCT_ID)).thenReturn(Optional.of(mockProduct));
+
+        // When
+        Product product = underTest.getProductById(ANY_PRODUCT_ID);
+
+        // Verify
+        verify(productService, times(1)).getProductById(ANY_PRODUCT_ID);
+        assertEquals(mockProduct, product);
+    }
+
+    @Test
+    public void testGetProductByIdThrowsWhenProductNotFound() {
+
+        // Given
+        when(productService.getProductById(anyLong())).thenReturn(Optional.empty());
+
+        // When and Verify
+        Assertions.assertThrows(NotFoundException.class, () -> {
+            underTest.getProductById(ANY_PRODUCT_ID);
         });
     }
 

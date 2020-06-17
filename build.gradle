@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.3.1.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
+	id 'idea'
 }
 
 group = 'com.trendyol'
@@ -35,6 +36,47 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 }
 
-test {
+
+
+
+sourceSets {
+	intTest {
+		compileClasspath += sourceSets.main.output
+		runtimeClasspath += sourceSets.main.output
+	}
+}
+
+configurations {
+	intTestImplementation.extendsFrom implementation
+	intTestRuntimeOnly.extendsFrom runtimeOnly
+}
+
+dependencies {
+	intTestImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+idea {
+	module {
+		testSourceDirs += sourceSets.intTest.java.srcDirs
+		testResourceDirs += sourceSets.intTest.resources.srcDirs
+		scopes.TEST.plus += [ configurations.intTestCompile ]
+	}
+}
+
+task integrationTest(type: Test) {
+	group 'Verification'
+	description 'Runs the integration tests.'
+	testClassesDirs = sourceSets.intTest.output.classesDirs
+	classpath = sourceSets.intTest.runtimeClasspath
+
+	testLogging {
+		events "passed", "skipped", "failed"
+
+	}
+}
+
+tasks.withType(Test) {
 	useJUnitPlatform()
 }
