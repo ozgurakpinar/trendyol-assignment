@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4e521a01-59ae-4e9a-bb14-d505bc05f273",
+		"_postman_id": "62d95c37-bc25-4cce-ba82-a9d02470ff95",
 		"name": "TrendyolDolap",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -56,7 +56,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "a3d4ec00-a363-40e3-8337-1f94b1f9a4d7",
+								"id": "03771b9c-183d-4052-8ffd-e06e9291e666",
 								"exec": [
 									""
 								],
@@ -66,7 +66,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "e23910b2-cd03-437a-a8c6-49e7c2b32baf",
+								"id": "95ab2b90-1c8a-4170-ae22-0a582e1f9ee9",
 								"exec": [
 									""
 								],
@@ -96,7 +96,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "41c02135-b602-4a35-a1a4-d7de77707bb5",
+								"id": "91e5605f-81e4-4594-848e-6993cc547bfc",
 								"exec": [
 									"    var categories =  [{\r",
 									"            name : 'Clothing',\r",
@@ -137,7 +137,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "6eb72e26-4007-4051-ac8d-4019599c371e",
+								"id": "1bf72302-26f5-4eea-ada5-3faaa265af03",
 								"exec": [
 									""
 								],
@@ -219,14 +219,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8989/products/2",
+							"raw": "localhost:8989/products/categories/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8989",
 							"path": [
 								"products",
-								"2"
+								"categories",
+								"1"
 							]
 						}
 					},
@@ -239,7 +240,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 1,\r\n    \"name\": \"Blender 2\",\r\n    \"description\": \"Kitchen blender 2\",\r\n    \"price\": \"0.5\",\r\n    \"category\": {\r\n        \"id\" : 2\r\n    }\r\n    }",
+							"raw": "{\r\n    \"id\" : 1,\r\n    \"name\": \"Blender 2\",\r\n    \"description\": \"Kitchen blender 3\",\r\n    \"price\": \"0.5\",\r\n    \"category\": {\r\n        \"id\" : 2\r\n    }\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -254,6 +255,25 @@
 							"port": "8989",
 							"path": [
 								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8989/products/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"products",
+								"1"
 							]
 						}
 					},
@@ -282,7 +302,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "dd4135de-dda5-4539-888b-91dfcba8c820",
+				"id": "ad8a10f9-f436-4785-8628-4cbcb2c62dec",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -292,7 +312,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "eb2f4444-7e57-4f81-8371-94d57da2aba0",
+				"id": "d6675d14-353b-4fb0-96c2-762615ce54fa",
 				"type": "text/javascript",
 				"exec": [
 					""
