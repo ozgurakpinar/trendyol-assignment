@@ -38,11 +38,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8989/categories",
+							"raw": "{{BaseUrl}}/categories",
 							"host": [
-								"localhost"
+								"{{BaseUrl}}"
 							],
-							"port": "8989",
 							"path": [
 								"categories"
 							]
@@ -78,11 +77,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8989/categories",
+							"raw": "{{BaseUrl}}/categories",
 							"host": [
-								"localhost"
+								"{{BaseUrl}}"
 							],
-							"port": "8989",
 							"path": [
 								"categories"
 							]
@@ -149,11 +147,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8989/categories",
+							"raw": "{{BaseUrl}}/categories",
 							"host": [
-								"localhost"
+								"{{BaseUrl}}"
 							],
-							"port": "8989",
 							"path": [
 								"categories"
 							]
@@ -167,11 +164,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8989/categories/1",
+							"raw": "{{BaseUrl}}/categories/1",
 							"host": [
-								"localhost"
+								"{{BaseUrl}}"
 							],
-							"port": "8989",
 							"path": [
 								"categories",
 								"1"
@@ -201,11 +197,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8989/products",
+							"raw": "{{BaseUrl}}/products",
 							"host": [
-								"localhost"
+								"{{BaseUrl}}"
 							],
-							"port": "8989",
 							"path": [
 								"products"
 							]
@@ -219,11 +214,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8989/products/categories/1",
+							"raw": "{{BaseUrl}}/products/categories/1",
 							"host": [
-								"localhost"
+								"{{BaseUrl}}"
 							],
-							"port": "8989",
 							"path": [
 								"products",
 								"categories",
@@ -248,11 +242,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8989/products",
+							"raw": "{{BaseUrl}}/products",
 							"host": [
-								"localhost"
+								"{{BaseUrl}}"
 							],
-							"port": "8989",
 							"path": [
 								"products"
 							]
@@ -266,11 +259,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8989/products/1",
+							"raw": "{{BaseUrl}}/products/1",
 							"host": [
-								"localhost"
+								"{{BaseUrl}}"
 							],
-							"port": "8989",
 							"path": [
 								"products",
 								"1"
@@ -322,7 +314,7 @@
 	],
 	"variable": [
 		{
-			"id": "1c64098e-f491-4c88-aa1b-7d26f11f45b2",
+			"id": "d77a1d22-9106-4450-925b-162b799b12f7",
 			"key": "BaseUrl",
 			"value": "localhost:8989",
 			"type": "string"
