@@ -2,7 +2,6 @@ package com.trendyol.assignment.controller;
 
 import com.trendyol.assignment.exceptions.BadRequestException;
 import com.trendyol.assignment.exceptions.NotFoundException;
-import com.trendyol.assignment.model.Category;
 import com.trendyol.assignment.model.CreateProductRequest;
 import com.trendyol.assignment.model.Product;
 import com.trendyol.assignment.service.CategoryService;
@@ -10,10 +9,7 @@ import com.trendyol.assignment.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 @RestController
 public class ProductController {
@@ -35,12 +31,9 @@ public class ProductController {
     }
 
     @GetMapping(value = "/products/categories/{categoryId}")
-    public Set<Product> getProductsByCategory(@PathVariable("categoryId") long id) {
+    public List<Product> getProductsByCategory(@PathVariable("categoryId") long id) {
 
-        Category category = categoryService.getCategoryById(id)
-                .orElseThrow(() -> new NotFoundException("Category with id " + id + " does not exist!"));
-
-        return category.getProducts();
+        return productService.getProductsByCategory(id);
     }
 
     @GetMapping(value = "/products/{id}")

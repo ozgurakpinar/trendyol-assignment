@@ -37,11 +37,15 @@ dependencies {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 
+	testImplementation 'org.springframework.security:spring-security-test'
+
+
+//	Integration Test Dependencies
 	intTestImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 
-	testImplementation 'org.springframework.security:spring-security-test'
+	intTestRuntimeOnly 'com.h2database:h2'
 }
 
 

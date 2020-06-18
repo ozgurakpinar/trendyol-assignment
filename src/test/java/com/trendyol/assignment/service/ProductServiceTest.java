@@ -1,6 +1,7 @@
 package com.trendyol.assignment.service;
 
 import com.trendyol.assignment.exceptions.NotFoundException;
+import com.trendyol.assignment.model.Category;
 import com.trendyol.assignment.model.CreateProductRequest;
 import com.trendyol.assignment.model.Product;
 import com.trendyol.assignment.repository.ProductRepository;
@@ -11,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.List;
 import java.util.Optional;
 
 import static com.trendyol.assignment.utils.TestUtils.*;
@@ -122,6 +124,36 @@ public class ProductServiceTest {
         // When and Verify
         Assertions.assertThrows(NotFoundException.class, () -> {
             underTest.updateProduct(mockProduct);
+        });
+    }
+
+    @Test
+    public void testGetProductsByCategory() {
+        // Given
+        List<Product> mockProducts = mock(List.class);
+        Category mockCategory = mock(Category.class);
+
+        when(categoryService.getCategoryById(ANY_CATEGORY_ID)).thenReturn(Optional.of(mockCategory));
+        when(productRepository.findByCategory(mockCategory)).thenReturn(mockProducts);
+
+        // When
+        List<Product> products = underTest.getProductsByCategory(ANY_CATEGORY_ID);
+
+        // Verify
+        verify(productRepository, times(1)).findByCategory(mockCategory);
+        verify(categoryService, times(1)).getCategoryById(ANY_CATEGORY_ID);
+
+        assertEquals(mockProducts, products);
+    }
+
+    @Test
+    public void testGetProductsByCategoryThrowsWhenCategoryNotFound() {
+        // Given
+        when(categoryService.getCategoryById(ANY_CATEGORY_ID)).thenReturn(Optional.empty());
+
+        // When and Verify
+        Assertions.assertThrows(NotFoundException.class, () -> {
+            underTest.getProductsByCategory(ANY_CATEGORY_ID);
         });
     }
 }

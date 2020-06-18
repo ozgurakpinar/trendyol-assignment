@@ -7,12 +7,13 @@ import com.trendyol.assignment.model.Category;
 import com.trendyol.assignment.model.CreateProductRequest;
 import com.trendyol.assignment.model.Product;
 import com.trendyol.assignment.repository.ProductRepository;
-import com.trendyol.assignment.service.ProductService;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
@@ -24,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest()
 @AutoConfigureMockMvc
+@TestPropertySource(locations="classpath:application.properties")
 public class ProductControllerIntTest {
 
     @Autowired

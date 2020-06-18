@@ -13,14 +13,13 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.configuration.IMockitoConfiguration;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import static com.trendyol.assignment.utils.TestUtils.ANY_CATEGORY_ID;
 import static com.trendyol.assignment.utils.TestUtils.ANY_PRODUCT_ID;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 class ProductControllerTest {
@@ -73,29 +72,16 @@ class ProductControllerTest {
 
         // Given
         Category mockCategory = mock(Category.class);
-        Set<Product> mockProducts = mock(Set.class);
+        List<Product> mockProducts = mock(List.class);
 
-        when(mockCategory.getProducts()).thenReturn(mockProducts);
-        when(categoryService.getCategoryById(ANY_CATEGORY_ID)).thenReturn(Optional.of(mockCategory));
+        when(productService.getProductsByCategory(ANY_CATEGORY_ID)).thenReturn(mockProducts);
 
         // When
-        Set<Product> products = underTest.getProductsByCategory(ANY_CATEGORY_ID);
+        List<Product> products = underTest.getProductsByCategory(ANY_CATEGORY_ID);
 
         // Verify
-        verify(categoryService, times(1)).getCategoryById(ANY_CATEGORY_ID);
+        verify(productService, times(1)).getProductsByCategory(ANY_CATEGORY_ID);
         assertEquals(mockProducts, products);
-    }
-
-    @Test
-    public void testGetProductsByCategoryThrowsWhenCategoryNotFound() {
-
-        // Given
-        when(categoryService.getCategoryById(anyLong())).thenReturn(Optional.empty());
-
-        // When and Verify
-        Assertions.assertThrows(NotFoundException.class, () -> {
-            underTest.getProductsByCategory(ANY_CATEGORY_ID);
-        });
     }
 
     @Test

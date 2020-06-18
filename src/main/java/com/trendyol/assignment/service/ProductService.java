@@ -8,6 +8,7 @@ import com.trendyol.assignment.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -45,5 +46,12 @@ public class ProductService {
         originalProduct.setCategory(product.getCategory());
 
         return productRepository.save(originalProduct);
+    }
+
+    public List<Product> getProductsByCategory(long categoryId) {
+        Category category = categoryService.getCategoryById(categoryId)
+                .orElseThrow(() -> new NotFoundException("Category with id " + categoryId + " does not exist!"));
+
+        return productRepository.findByCategory(category);
     }
 }
