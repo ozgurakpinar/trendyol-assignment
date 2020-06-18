@@ -29,7 +29,10 @@ public class ProductRepositoryIntTest {
 
     @BeforeAll
     public void setUp() {
+        ANY_CATEGORY.setId(null);
         categoryRepository.save(ANY_CATEGORY);
+
+        underTest.deleteAll();
     }
 
     @AfterEach
