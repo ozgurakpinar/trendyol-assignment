@@ -30,6 +30,7 @@ public class CategoryRepositoryIntTest {
     @BeforeAll
     public void setUp() {
         underTest.deleteAll();
+        ANY_CATEGORY.setId(null);
     }
 
     @Test

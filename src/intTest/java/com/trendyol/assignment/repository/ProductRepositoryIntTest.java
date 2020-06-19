@@ -1,10 +1,7 @@
 package com.trendyol.assignment.repository;
 
 import com.trendyol.assignment.model.Product;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.TestPropertySource;
@@ -33,6 +30,11 @@ public class ProductRepositoryIntTest {
         categoryRepository.save(ANY_CATEGORY);
 
         underTest.deleteAll();
+    }
+
+    @BeforeEach
+    public void setUpBeforeMethod() {
+        ANY_PRODUCT.setId(null);
     }
 
     @AfterEach
